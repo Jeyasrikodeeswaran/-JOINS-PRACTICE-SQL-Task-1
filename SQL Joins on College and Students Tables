@@ -1,0 +1,103 @@
+****
+
+### **Tables Used**
+
+#### **`Students` Table:**  
+| StudentID | Name  | CollegeID |  
+|-----------|-------|----------|  
+| 1         | Alex  | 101      |  
+| 2         | Brian | 102      |  
+| 3         | Cathy | NULL     |  
+| 4         | David | 104      |  
+
+#### **`Colleges` Table:**  
+| CollegeID | CollegeName     |  
+|-----------|---------------|  
+| 101       | Harvard       |  
+| 102       | MIT           |  
+| 103       | Stanford      |  
+| 104       | Yale          |  
+
+---
+
+### **1. INNER JOIN**  
+Returns only students who have a matching college.  
+
+```sql
+SELECT Students.StudentID, Students.Name, Colleges.CollegeName  
+FROM Students  
+INNER JOIN Colleges  
+ON Students.CollegeID = Colleges.CollegeID;
+```
+
+**Output:**  
+| StudentID | Name  | CollegeName |  
+|-----------|-------|------------|  
+| 1         | Alex  | Harvard    |  
+| 2         | Brian | MIT        |  
+| 4         | David | Yale       |  
+
+---
+
+### **2. LEFT JOIN**  
+Returns all students, even if they don’t have a college assigned.  
+
+```sql
+SELECT Students.StudentID, Students.Name, Colleges.CollegeName  
+FROM Students  
+LEFT JOIN Colleges  
+ON Students.CollegeID = Colleges.CollegeID;
+```
+
+**Output:**  
+| StudentID | Name  | CollegeName |  
+|-----------|-------|------------|  
+| 1         | Alex  | Harvard    |  
+| 2         | Brian | MIT        |  
+| 3         | Cathy | NULL       |  
+| 4         | David | Yale       |  
+
+---
+
+### **3. RIGHT JOIN**  
+Returns all colleges, even if no students are enrolled.  
+
+```sql
+SELECT Students.StudentID, Students.Name, Colleges.CollegeName  
+FROM Students  
+RIGHT JOIN Colleges  
+ON Students.CollegeID = Colleges.CollegeID;
+```
+
+**Output:**  
+| StudentID | Name  | CollegeName |  
+|-----------|-------|------------|  
+| 1         | Alex  | Harvard    |  
+| 2         | Brian | MIT        |  
+| NULL      | NULL  | Stanford   |  
+| 4         | David | Yale       |  
+
+---
+
+### **4. FULL JOIN**  
+Returns all students and colleges, even if they don’t have a match.  
+
+```sql
+SELECT Students.StudentID, Students.Name, Colleges.CollegeName  
+FROM Students  
+FULL JOIN Colleges  
+ON Students.CollegeID = Colleges.CollegeID;
+```
+
+**Output:**  
+| StudentID | Name  | CollegeName |  
+|-----------|-------|------------|  
+| 1         | Alex  | Harvard    |  
+| 2         | Brian | MIT        |  
+| 3         | Cathy | NULL       |  
+| 4         | David | Yale       |  
+| NULL      | NULL  | Stanford   |  
+
+---
+
+
